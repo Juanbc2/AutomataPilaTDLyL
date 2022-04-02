@@ -86,7 +86,7 @@ namespace TdLyL__AP
                     {
                         if (datagridview.Rows[i].Cells[j].Value.ToString().Equals(""))
                         {
-                            stateRow.Add("¬");
+                            stateRow.Add("E");
                         }
                         else
                         {
@@ -96,7 +96,7 @@ namespace TdLyL__AP
                     catch (Exception e)
                     {
                         Console.WriteLine(e.GetBaseException().ToString());
-                        stateRow.Add(("¬"));
+                        stateRow.Add(("E"));
                     }
                 }
                 matrix.Add(stateRow);
