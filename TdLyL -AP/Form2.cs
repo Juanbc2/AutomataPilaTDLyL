@@ -60,11 +60,28 @@ namespace TdLyL__AP
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!textBox1.Text.Equals("") && !textBox2.Text.Equals("") && !textBox3.Text.Equals(""))
+            {
             AP.simbolosEntrada = textBox1.Text.Split(',').ToList();
             AP.simbolosEnPila = textBox2.Text.Split(',').ToList();
             AP.setPila(textBox3.Text);
             AP.transiciones = datagridviewToMatrix(this.dataGridView1,AP.simbolosEnPila.Count,AP.simbolosEntrada.Count);
+            try
+            {
             label8.Text =  "Proceso:\n"+AP.validarHilera(textBox4.Text);
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Error al analizar, ¿ha olvidado llenar alguna transición?");
+                Console.WriteLine(ex.ToString());
+            }
+
+            }
+            else
+            {
+                MessageBox.Show("¿Ha rellenado todos los campos?");
+            }
+
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
