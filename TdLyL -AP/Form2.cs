@@ -15,20 +15,20 @@ namespace TdLyL__AP
         automataPila AP;
         public Form2()
         {
-            //this.AP = AP;
             List<string> simbolosEntrada = new List<string>();
             List<string> simbolosEnPila = new List<string>();
-            this.AP = new automataPila(simbolosEntrada, simbolosEnPila, "▼");
+            this.AP = new automataPila(simbolosEntrada, simbolosEnPila, "▼"); //creación del autómata
             InitializeComponent();
         }
 
-
+        //cambio dinámico de la tabla
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
             setDataGridViewColumns();
             setDataGridViewRows();
         }
 
+        //añadir columnas a la tabla
         private void setDataGridViewColumns()
         {
             AP.simbolosEntrada = textBox1.Text.Split(',').ToList();
@@ -40,6 +40,8 @@ namespace TdLyL__AP
             }
         }
 
+
+        //añadir filas a la tabla
         private void setDataGridViewRows()
         {
             AP.simbolosEnPila = textBox2.Text.Split(',').ToList();
@@ -53,22 +55,24 @@ namespace TdLyL__AP
             }
         }
 
+        //añadir dinamicamente a la tabla
         private void textBox2_KeyUp(object sender, KeyEventArgs e)
         {
             setDataGridViewRows();
         }
 
+        //botón revisar
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!textBox1.Text.Equals("") && !textBox2.Text.Equals("") && !textBox3.Text.Equals(""))
+            if (!textBox1.Text.Equals("") && !textBox2.Text.Equals("") && !textBox3.Text.Equals("")) //comprobación campos vacíos
             {
             AP.simbolosEntrada = textBox1.Text.Split(',').ToList();
             AP.simbolosEnPila = textBox2.Text.Split(',').ToList();
-            AP.setPila(textBox3.Text);
-            AP.transiciones = datagridviewToMatrix(this.dataGridView1,AP.simbolosEnPila.Count,AP.simbolosEntrada.Count);
+            AP.setPila(textBox3.Text); 
+            AP.transiciones = datagridviewToMatrix(this.dataGridView1,AP.simbolosEnPila.Count,AP.simbolosEntrada.Count); 
             try
             {
-            label8.Text =  "Proceso:\n"+AP.validarHilera(textBox4.Text);
+            label8.Text =  "Proceso:\n"+AP.validarHilera(textBox4.Text); //Aquí se lee el proceso y si es válida
             }
             catch (NullReferenceException ex)
             {
@@ -89,7 +93,7 @@ namespace TdLyL__AP
             AP.setPila(textBox3.Text);
         }
 
-
+        //pasar datos de la tabla a matriz
         private List<List<string>> datagridviewToMatrix(DataGridView datagridview, int row, int col)
         {
             List<List<string>> matrix = new List<List<string>>();

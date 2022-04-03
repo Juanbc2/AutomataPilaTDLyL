@@ -21,6 +21,7 @@ namespace TdLyL__AP
             setPila(confInicial);
         }
 
+        //operación replace
         private void replace(List<string> elementos){
             pila.Pop();
             foreach (string str in elementos)
@@ -29,6 +30,7 @@ namespace TdLyL__AP
             }
         }
 
+        
         public void setPila(string confInicial)
         {
             pila.Clear();
